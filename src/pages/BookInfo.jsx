@@ -5,9 +5,9 @@ import Rating from '../components/ui/Rating'
 import Price from '../components/ui/Price'
 import Book from '../components/ui/Book'
 
-export default function BookInfo({ books, addToCart }) {
+export default function BookInfo({ books, addToCart, cart }) {
   const { id } = useParams()
-const book = books.find(book => +book.id === +id)
+const book = books.find((book) => +book.id === +id)
 
 
 function addBookToCart(book) {
@@ -51,10 +51,10 @@ function bookExistsOnCart() {
                       </p>
                     </div>
 
-                    {
-                      bookExistsOnCart() ? (<link to={`/cart`} className="book__link">
+                    {bookExistsOnCart() ? (
+                      <Link to={`/cart`} className="book__link">
                       <button className="btn">Checkout</button>
-                      </link>
+                      </Link>
                     ) :(
                          <button className="btn" onClick={() => addBookToCart(book)}>
                       Add To Cart
