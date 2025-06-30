@@ -28,6 +28,10 @@ function changeQuantity(book, quantity) {
   )
 }
 
+function removeItem(item) {
+  setCart(cart.filter(book => book.id !== item.id))
+}
+
 useEffect(() => {
   console.log(cart)
 }, [cart])
@@ -41,7 +45,7 @@ useEffect(() => {
       <Route path="/books" element={<Books books={books} />}/>
       <Route path="/books/:id" element={<BookInfo books={books} 
       addToCart={addToCart} cart={cart}/>} />
-      <Route path="/cart" element={<Cart books={books} cart={cart} changeQuantity={changeQuantity}
+      <Route path="/cart" element={<Cart books={books} cart={cart} changeQuantity={changeQuantity} removeItem={removeItem}
       />}/>
 
    
