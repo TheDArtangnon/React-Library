@@ -1,4 +1,6 @@
 import React from 'react'
+import EmptyCart from "../assets/empty_cart.svg"
+import { Link } from 'react-router-dom'
 
 export default function Cart({ cart, changeQuantity, removeItem }) {
 const total = () => {
@@ -61,12 +63,18 @@ return price
                                 </div>
                             </div>
                                     )
-                                })
-                            }
-                            
+                                })}
                         </div>
+                             {cart.length === 0 && ( <div className="cart__empty">
+                         <img src={EmptyCart} alt="" className="cart__empty--img" />
+                         <h2>You Don't Have Any Books In Your Cart</h2>
+                         <Link to="/books">       
+                         <button className="btn">Browse Books</button>
+                         </Link>  
+                        </div>
+                    )}
                     </div>
-                    <div className="total">
+                    {cart.length > 0 && (<div className="total">
                       <div className="total__item total__sub-total">
                         <span>Subtotal</span>
                         <span>${(total() *0.9).toFixed(2)}</span>
@@ -83,7 +91,7 @@ return price
                          onClick={() => alert(`Haven't gotten around to doint this yet :(`)}>
                             Proceed to checkout
                          </button>
-                    </div>
+                    </div>)}
                 </div>
             </div>
         </main>
